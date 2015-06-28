@@ -8,10 +8,9 @@ import java.io.IOException;
 public class MainT2 {
 	
 	public static void main(String[] args) {
-		File f = new File("C:/desenv/grafos/grafo_4.txt");
-
+		File f = new File("C:/desenv/grafos/grafo_1.txt");
 		BufferedReader br = null;
-//		String caminhoTxtSaida = "C:/Users/Lucas/Desktop/grafos/saidaAsGraph.txt";
+		String caminhoMST = "C:/desenv/grafos/resultados/MstGrafo1.txt";
 
 		try {
 
@@ -24,17 +23,15 @@ public class MainT2 {
 			GrafoPeso grafo = new GrafoPeso(numeroVertices, false);
 			grafo.insereArestas(br);
 			
-			if(grafo instanceof GrafoPeso){
-				System.out.println("grafo com peso");
-			} else {
-				System.out.println("ruim");
-			}
-			System.out.println(grafo.getCaminhoMinimo(1, 10));
-			System.out.println(grafo.getCaminhoMinimo(1, 100));
-			System.out.println(grafo.getCaminhoMinimo(1, 1000));
-			System.out.println(grafo.getCaminhoMinimo(1, 10000));
-			System.out.println("Distancia Media: " + grafo.getDistanciaMediaComPeso());
-//			System.out.println(grafo.getDistanciaMediaComPeso());
+			grafo.getDistanciaMediaComPeso();
+			
+			GrafosUtil.geraTxtMST(grafo, caminhoMST);
+			
+//			Prim mst = new Prim(grafo);
+//			System.out.println(mst.getMST());
+//			System.out.println(mst.getPesoMST());
+			
+			System.out.println("done...");
 			
 		} catch (IOException e) {
 			e.printStackTrace();

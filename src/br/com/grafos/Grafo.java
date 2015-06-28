@@ -109,13 +109,15 @@ public class Grafo {
 	 * 	<code>aresta2</code> com <code>aresta1</code>	
 	 */
 	public void addAresta(int vertice1, int vertice2){
+		vertice1 -= 1;
+		vertice2 -= 1;
 		if(this.temMatrizAdj){
-			this.matrizAdjacencias[vertice1-1][vertice2-1] = true ;
-			this.matrizAdjacencias[vertice2-1][vertice1-1] = true ;
+			this.matrizAdjacencias[vertice1][vertice2] = true ;
+			this.matrizAdjacencias[vertice2][vertice1] = true ;
 		}
 		if(this.temListaAdj){
-			this.listaAdjacencias.get(vertice1-1).add(vertice2-1);
-			this.listaAdjacencias.get(vertice2-1).add(vertice1-1);
+			this.listaAdjacencias.get(vertice1).add(vertice2);
+			this.listaAdjacencias.get(vertice2).add(vertice1);
 		}	
 		this.numeroArestas += 1; //apos add incrementa o numero de arestas
 	}

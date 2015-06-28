@@ -1,17 +1,20 @@
 package br.com.grafos;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.PriorityQueue;
 
 public class Dijkstra {
 
 	private final static double INFINITO = Double.POSITIVE_INFINITY;
 	private double distancia[];
-	private double prev[];
+	private Aresta arestas[];
 
 	public Dijkstra(GrafoPeso grafo, int source) {
 		int numeroVertices = grafo.getNumeroVertices();
 		this.distancia = new double[numeroVertices];
-		this.prev = new double[numeroVertices];
+		this.arestas = new Aresta[numeroVertices];
 		if (!verificaPesoNegativo(grafo, numeroVertices)) {
 			computePaths(grafo, source);
 		}
@@ -37,6 +40,7 @@ public class Dijkstra {
 				double alt = this.distancia[u] + weight;
 				if (alt < this.distancia[v]) {
 					this.distancia[v] = alt;
+					this.arestas[v] = aresta;
 				}
 			}
 		}
@@ -67,7 +71,17 @@ public class Dijkstra {
 		}
 	}
 
-	public double[] getPrev() {
-		return prev;
+	public Aresta[] getArestas() {
+		return arestas;
+	}
+	
+	public List<Aresta> getArestasByVertice(int verticeFinal) {
+       List<Aresta> path = new ArrayList<Aresta>();
+        for (Aresta aresta = this.arestas[verticeFinal]; aresta != null; aresta = this.arestas[aresta.getFrom()]) {
+            path.add(aresta);
+        }
+        Collections.reverse(path);
+        return path;
+		
 	}
 }

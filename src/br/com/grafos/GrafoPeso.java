@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class GrafoPeso extends Grafo {
@@ -44,11 +45,15 @@ public class GrafoPeso extends Grafo {
 	}
 	
 	public void addAresta(int from, int to, double peso) {
-		this.listaAdjacenciasComPeso.get(from-1).add(new Aresta(from-1, to-1, peso));
-		this.listaAdjacenciasComPeso.get(to-1).add(new Aresta(to-1, from-1, peso));
+		from = from - 1;
+		to = to - 1;
+		this.listaAdjacenciasComPeso.get(from).add(new Aresta(from, to, peso));
+		this.listaAdjacenciasComPeso.get(to).add(new Aresta(to, from, peso));
 		this.pesoTotal += peso * 2;
-		super.addAresta(from, to);
 		
+		from+=1;
+		to+=1;
+		super.addAresta(from, to);
 	}
 	
 	public double getDistanciaMediaComPeso() {
@@ -60,8 +65,26 @@ public class GrafoPeso extends Grafo {
 	}
 	
 	public double getCaminhoMinimo(int verticeInicial, int verticeFinal) {
-		Dijkstra dj = new Dijkstra(this, verticeInicial-1);
-		return dj.getDistanciaByVertice(verticeFinal-1);
+		verticeInicial -= 1;
+		verticeFinal -= 1;
+		Dijkstra dj = new Dijkstra(this, verticeInicial);
+		return dj.getDistanciaByVertice(verticeFinal);
 	}
 	
+	public List<Aresta> getDistanciaMinima(int verticeInicial, int verticeFinal) {
+		verticeInicial -= 1;
+		verticeFinal -= 1;
+		Dijkstra dj = new Dijkstra(this, verticeInicial);
+		return dj.getArestasByVertice(verticeFinal);
+	}
+	
+	public List<Aresta> getMst() {
+		Prim mst = new Prim(this);
+		return mst.getMST();
+	}
+	
+	public double getPesoMst() {
+		Prim mst = new Prim(this);
+		return mst.getPesoMST();
+	}
 }
