@@ -8,9 +8,9 @@ import java.io.IOException;
 public class MainT2 {
 	
 	public static void main(String[] args) {
-		File f = new File("C:/desenv/grafos/grafo_1.txt");
+		File f = new File("C:/desenv/grafos/grafo_4.txt");
 		BufferedReader br = null;
-		String caminhoMST = "C:/desenv/grafos/resultados/MstGrafo1.txt";
+		String caminhoMST = "C:/desenv/grafos/resultados/MstGrafo4.txt";
 
 		try {
 
