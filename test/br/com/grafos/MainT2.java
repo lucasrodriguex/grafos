@@ -8,9 +8,9 @@ import java.io.IOException;
 public class MainT2 {
 	
 	public static void main(String[] args) {
-		File f = new File("C:/desenv/grafos/grafo_4.txt");
+		File f = new File("C:/desenv/grafos/grafo_3.txt");
 		BufferedReader br = null;
-		String caminhoMST = "C:/desenv/grafos/resultados/MstGrafo4.txt";
+		String caminhoMST = "C:/desenv/grafos/resultados/MstGrafo3.txt";
 
 		try {
 
@@ -23,7 +23,7 @@ public class MainT2 {
 			GrafoPeso grafo = new GrafoPeso(numeroVertices, false);
 			grafo.insereArestas(br);
 			
-			grafo.getDistanciaMediaComPeso();
+//			grafo.getDistanciaMediaComPeso();
 			
 			GrafosUtil.geraTxtMST(grafo, caminhoMST);
 			

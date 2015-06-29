@@ -367,7 +367,9 @@ public class GrafosUtil {
 		PrintWriter pw;
 		try {
 			pw = new PrintWriter(saida);
-			pw.println(grafo.getMst());
+			for(Aresta a : grafo.getMst()){
+				pw.println(a);
+			}
 			pw.println("Peso MST: "+ grafo.getPesoMst());
 			pw.close();
 			System.out.println("MST e peso gerados em disco com sucesso...");

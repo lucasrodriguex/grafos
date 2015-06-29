@@ -24,6 +24,6 @@ public class Aresta {
 	
 	@Override
 	public String toString() {
-		return this.from + "-" + this.to + " -> " + this.peso;
+		return this.from+1 + " " + this.to+1 + " " + this.peso;
 	}
 }
